@@ -5,8 +5,14 @@
 // It's licensed under MIT, I didn't want to use the entire library though.
 
 import Foundation
+import CoreData
 
 public func == <E: Equatable, R, K: KeyPath<R, E>>(kp: K, value: E) -> ComparisonTypedPredicate<R> {
+    ComparisonTypedPredicate(kp, .equalTo, value)
+}
+
+// Support comparison of objects to NSManagedObjectID
+public func == <E: NSManagedObject, R, K: KeyPath<R, Optional<E>>>(kp: K, value: NSManagedObjectID) -> ComparisonTypedPredicate<R> {
     ComparisonTypedPredicate(kp, .equalTo, value)
 }
 

@@ -16,6 +16,11 @@ public func == <E: NSManagedObject, R, K: KeyPath<R, Optional<E>>>(kp: K, value:
     ComparisonTypedPredicate(kp, .equalTo, value)
 }
 
+// Support comparison of objects to NSManagedObject
+public func == <E: NSManagedObject, R, K: KeyPath<R, Optional<E>>>(kp: K, value: E) -> ComparisonTypedPredicate<R> {
+    ComparisonTypedPredicate(kp, .equalTo, value)
+}
+
 public func != <E: Equatable, R, K: KeyPath<R, E>>(kp: K, value: E) -> ComparisonTypedPredicate<R> {
     ComparisonTypedPredicate(kp, .notEqualTo, value)
 }
